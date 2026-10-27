@@ -23,9 +23,9 @@ async function fetchDiagnostics(memberId: string): Promise<DiagnosticInfo[]> {
 export default async function MediListPage({ 
   searchParams 
 }: { 
-  searchParams: { memberId: string } 
+  searchParams: Promise<{ memberId?: string }>
 }) {
-  const memberId = searchParams.memberId;
+  const { memberId } = await searchParams;
 
   if (!memberId) {
     return <div>Error: Member ID is missing</div>;
